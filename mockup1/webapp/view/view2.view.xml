@@ -1,0 +1,15 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc"
+	controllerName="mockup1.mockup1.controller.view2" xmlns:html="http://www.w3.org/1999/xhtml">
+	<!--<App>-->
+	<!--	<pages>-->
+			<Page title="Title" showNavButton="true" navButtonPress="onBack">
+				<content>
+					<layout:VerticalLayout>
+						<Button text="To the first Page" press="onBack"/>
+						<Link id="link" text="A link to the first Page"/>
+					</layout:VerticalLayout>
+				</content>
+			</Page>
+	<!--	</pages>-->
+	<!--</App>-->
+</mvc:View>

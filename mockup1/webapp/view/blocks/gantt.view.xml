@@ -1,0 +1,40 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:forms="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns:t="sap.ui.table" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" version="1.0" xmlns:axistime="sap.gantt.axistime"
+	xmlns:config="sap.gantt.config" xmlns:g="sap.gantt.simple" xmlns:shapes="sap.gantt.simple.shapes" xmlns:table="sap.ui.table">
+	<g:GanttChartContainer height="100%">
+		<g:toolbar>
+			<g:ContainerToolbar/>
+		</g:toolbar>
+		<g:GanttChartWithTable id="gantt" shapeSelectionMode="Single">
+			<g:axisTimeStrategy>
+				<axistime:ProportionZoomStrategy>
+					<axistime:totalHorizon>
+						<config:TimeHorizon startTime="20181029000000" endTime="20181129000000"/>
+					</axistime:totalHorizon>
+					<axistime:visibleHorizon>
+						<config:TimeHorizon startTime="20181029000000" endTime="20181129000000"/>
+					</axistime:visibleHorizon>
+				</axistime:ProportionZoomStrategy>
+			</g:axisTimeStrategy>
+			<g:table>
+				<table:TreeTable selectionMode="Single" visibleRowCountMode="Auto" minAutoRowCount="12" selectionBehavior="RowSelector"
+					enableColumnReordering="true" rows="{ path: '/root', parameters: { arrayNames: ['children'], numberOfExpandedLevels: 1 } }">
+					<table:columns>
+						<table:Column label="Col 1" template="text"/>
+					</table:columns>
+					<table:rowSettingsTemplate>
+						<g:GanttRowSettings rowId="{id}" shapes1="{path: 'task', templateShareable:false}" shapes2="{path: 'subtask', templateShareable:false}">
+							<g:shapes1>
+								<shapes:Task time="{path: 'startTime', formatter: '.fnTimeConverter'}" endTime="{path: 'endTime', formatter: '.fnTimeConverter'}"
+									type="SummaryExpanded" color="sapUiAccent5"/>
+							</g:shapes1>
+							<g:shapes2>
+								<shapes:Task time="{path: 'startTime', formatter: '.fnTimeConverter'}" endTime="{path: 'endTime', formatter: '.fnTimeConverter'}"/>
+							</g:shapes2>
+						</g:GanttRowSettings>
+					</table:rowSettingsTemplate>
+				</table:TreeTable>
+			</g:table>
+		</g:GanttChartWithTable>
+	</g:GanttChartContainer>
+</mvc:View>

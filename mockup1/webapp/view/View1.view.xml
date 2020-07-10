@@ -1,0 +1,399 @@
+<mvc:View controllerName="mockup1.mockup1.controller.View1" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m"
+	xmlns:forms="sap.ui.layout.form" xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	version="1.0" xmlns:rte="sap.ui.richtexteditor" xmlns:vblocks="mockup1.mockup1.view.blocks" xmlns:axistime="sap.gantt.axistime"
+	xmlns:config="sap.gantt.config" xmlns:g="sap.gantt.simple" xmlns:shapes="sap.gantt.simple.shapes" xmlns:table="sap.ui.table">
+	<!--<App  id="app">-->
+	<!--	<pages>-->
+			<Page title="Title" showNavButton="true" navButtonPress="onBack">
+				<uxap:ObjectPageLayout id="objlayoutID" showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true"
+					showFooter="{= !${appView>/hasInputVisible}}" upperCaseAnchorBar="false" subSectionLayout="TitleOnTop" headerContentPinnable="true">
+					<uxap:headerTitle>
+						<!--<uxap:ObjectPageDynamicHeaderTitle>-->
+						<uxap:ObjectPageHeader objectTitle="Object Page Header" objectSubtitle="Object Page Header - subtitle" headerDesign="Light"
+							isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
+							<uxap:actions>
+								<Button text="Edit" type="Emphasized" press="onEditSR" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+									id="idEditButton"/>
+								<Button text="Delete" type="Transparent" press="onDeleteSR" iconFirst="true" width="auto" enabled="true" visible="true"
+									iconDensityAware="false"/>
+								<uxap:ObjectPageHeaderActionButton icon="sap-icon://refresh" text="{buttons>/text}" tooltip="refresh"/>
+							</uxap:actions>
+							<uxap:breadCrumbsLinks/>
+							<uxap:navigationBar/>
+						</uxap:ObjectPageHeader>
+						<!--</uxap:ObjectPageDynamicHeaderTitle>-->
+					</uxap:headerTitle>
+					<uxap:headerContent>
+						<FlexBox wrap="Wrap">
+							<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+								<ObjectAttribute title="Solution Lead" text="{SOLLEADNAM}" press="onSolLead" active="true"/>
+								<ObjectStatus title="Requester" text="Shyam"/>
+								<ObjectStatus title="Account" text="123"/>
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+								<ObjectStatus title="Deal Desc./ID" text=""/>
+								<ObjectStatus title="MU" text="India"/>
+								<ObjectStatus title="Proposal Type" text="Bid"/>
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+								<ObjectStatus title="Priority"/>
+								<ObjectStatus text="High" state="Warning" class="sapMObjectStatusLarge"/>
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+								<ObjectStatus title="Status"/>
+								<ObjectStatus text="New" state="{path: 'REQSTATUSID/TXT', formatter:'.status'}" class="sapMObjectStatusLarge"/>
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+								<ObjectStatus title="Deal Revenue"/>
+								<ObjectStatus text="100000 USD" class="sapMObjectStatusLarge"/>
+							</l:VerticalLayout>
+							<l:VerticalLayout class="sapUiSmallMarginBeginEnd">
+								<ObjectStatus title="Solutioning process"/>
+								<ObjectStatus text="ABC" class="sapMObjectStatusLarge" icon="sap-icon://history"/>
+							</l:VerticalLayout>
+						</FlexBox>
+					</uxap:headerContent>
+					<uxap:sections>
+						<uxap:ObjectPageSection showTitle="true" title="Scope" titleUppercase="false" visible="true" id="headerId">
+							<uxap:ObjectPageSubSection title="{i18n>Title}" id="idHeader" titleUppercase="false">
+								<uxap:blocks>
+									<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding" sideContentFallDown="BelowM"
+										containerQuery="true" equalSplit="true" showSideContent="false" breakpointChanged="updateToggleButtonState">
+										<Title level="H1" text="Main content"/>
+										<t:TreeTable id="TreeTableBasic" rows="{path:'/catalog/clothing', parameters: {arrayNames:['categories']}}" selectionMode="MultiToggle"
+											enableSelectAll="false" cellClick="onPressTable" ariaLabelledBy="title">
+											<t:extension>
+												<OverflowToolbar>
+													<Title id="title" text="Clothing"/>
+													<ToolbarSpacer/>
+													<Button text="Collapse all" press="onCollapseAll"/>
+													<Button text="Collapse selection" press="onCollapseSelection"/>
+													<Button text="Expand first level" press="onExpandFirstLevel"/>
+													<Button text="Expand selection" press="onExpandSelection"/>
+												</OverflowToolbar>
+											</t:extension>
+											<t:columns>
+												<t:Column width="13rem">
+													<Label text="Categories"/>
+													<t:template>
+														<Text text="{name}" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column width="9rem">
+													<Label text="Price"/>
+													<t:template>
+														<u:Currency value="{amount}" currency="{currency}"/>
+													</t:template>
+												</t:Column>
+												<t:Column width="11rem">
+													<Label text="Size"/>
+													<t:template>
+														<Select items="{path: '/sizes', templateShareable: true}" selectedKey="{size}" visible="{= !!${size}}" forceSelection="false">
+															<core:Item key="{key}" text="{value}"/>
+														</Select>
+													</t:template>
+												</t:Column>
+											</t:columns>
+										</t:TreeTable>
+										<l:sideContent>
+											<uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" showEditHeaderButton="true"
+												editHeaderButtonPress="handleEditBtnPress">
+												<uxap:headerTitle>
+													<uxap:ObjectPageDynamicHeaderTitle>
+														<uxap:expandedHeading>
+															<Title text="Denise Smith" wrapping="true"/>
+														</uxap:expandedHeading>
+													</uxap:ObjectPageDynamicHeaderTitle>
+												</uxap:headerTitle>
+												<uxap:sections>
+													<uxap:ObjectPageSection id="goalsSection" title="2014 Goals Plan">
+														<uxap:subSections>
+															<uxap:ObjectPageSubSection id="goalsSectionSS1">
+																<uxap:blocks>
+																	<SegmentedButton selectedKey="satellite" class="sapUiSmallMarginBottom">
+																		<items>
+																			<SegmentedButtonItem text="Map"/>
+																			<SegmentedButtonItem text="Satellite" key="satellite"/>
+																			<SegmentedButtonItem text="Hybrid"/>
+																		</items>
+																	</SegmentedButton>
+																	<forms:SimpleForm labelSpanL="4" labelSpanM="4" editable="false" labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+																		maxContainerCols="2" layout="ResponsiveGridLayout" width="100%">
+																		<Label text="Job classification"/>
+																		<Text text="Senior Ui Developer (UIDEV-SR)"/>
+																		<Text text=" "/>
+																		<Label text="Pay Grade"/>
+																		<Text text="Salary Grade 18 (GR-14)"/>
+																		<Text text=" "/>
+																		<Label text="Job title"/>
+																		<Text text="Developer"/>
+																		<Text text=" "/>
+																		<Label text="Local Job Title"/>
+																		<Label text="Ui Developer"/>
+																	</forms:SimpleForm>
+																</uxap:blocks>
+															</uxap:ObjectPageSubSection>
+														</uxap:subSections>
+													</uxap:ObjectPageSection>
+												</uxap:sections>
+												<uxap:footer>
+													<OverflowToolbar>
+														<ToolbarSpacer/>
+														<Button type="Accept" text="Accept"/>
+														<Button type="Reject" text="Reject"/>
+													</OverflowToolbar>
+												</uxap:footer>
+											</uxap:ObjectPageLayout>
+										</l:sideContent>
+									</l:DynamicSideContent>
+								</uxap:blocks>
+								<!--<uxap:moreBlocks/>-->
+								<!--<uxap:actions/>-->
+							</uxap:ObjectPageSubSection>
+							<!--</uxap:subSections>-->
+							<!--<uxap:customAnchorBarButton/>-->
+						</uxap:ObjectPageSection>
+						<uxap:ObjectPageSection showTitle="true" title="Page Section Title" titleUppercase="false" visible="true" id="idGanttCont1">
+							<uxap:subSections>
+								<uxap:ObjectPageSubSection title="Gantt with Popup" id="idHeader1" titleUppercase="false">
+									<uxap:blocks>
+										<l:FixFlex minFlexSize="400">
+											<l:fixContent></l:fixContent>
+											<l:flexContent>
+												<g:GanttChartContainer>
+													<g:toolbar>
+														<g:ContainerToolbar/>
+													</g:toolbar>
+													<g:GanttChartWithTable id="gantt" shapeSelectionMode="Single">
+														<g:axisTimeStrategy>
+															<axistime:ProportionZoomStrategy>
+																<axistime:totalHorizon>
+																	<config:TimeHorizon startTime="20181029000000" endTime="20181129000000"/>
+																</axistime:totalHorizon>
+																<axistime:visibleHorizon>
+																	<config:TimeHorizon startTime="20181029000000" endTime="20181129000000"/>
+																</axistime:visibleHorizon>
+															</axistime:ProportionZoomStrategy>
+														</g:axisTimeStrategy>
+														<g:table>
+															<table:TreeTable selectionMode="Single" visibleRowCountMode="Auto" minAutoRowCount="12" selectionBehavior="RowSelector"
+																enableColumnReordering="true" rows="{ path: '/root', parameters: { arrayNames: ['children'], numberOfExpandedLevels: 1 } }"
+																cellClick="onPressTreeTable">
+																<table:columns>
+																	<table:Column label="Col 1" template="text"/>
+																</table:columns>
+																<table:rowSettingsTemplate>
+																	<g:GanttRowSettings rowId="{id}" shapes1="{path: 'task', templateShareable:false}" shapes2="{path: 'subtask', templateShareable:false}">
+																		<g:shapes1>
+																			<shapes:Task time="{path: 'startTime', formatter: '.fnTimeConverter'}" endTime="{path: 'endTime', formatter: '.fnTimeConverter'}"
+																				type="SummaryExpanded" color="sapUiAccent5"/>
+																		</g:shapes1>
+																		<g:shapes2>
+																			<shapes:Task time="{path: 'startTime', formatter: '.fnTimeConverter'}" endTime="{path: 'endTime', formatter: '.fnTimeConverter'}"/>
+																		</g:shapes2>
+																	</g:GanttRowSettings>
+																</table:rowSettingsTemplate>
+															</table:TreeTable>
+														</g:table>
+													</g:GanttChartWithTable>
+												</g:GanttChartContainer>
+											</l:flexContent>
+										</l:FixFlex>
+										<!--<vblocks:gantt id="ganttBlock"/>-->
+									</uxap:blocks>
+									<uxap:moreBlocks/>
+									<uxap:actions/>
+								</uxap:ObjectPageSubSection>
+							</uxap:subSections>
+						</uxap:ObjectPageSection>
+						<uxap:ObjectPageSection showTitle="true" title="Page Section Title" titleUppercase="false" visible="true" id="idGanttCont2">
+							<uxap:subSections>
+								<uxap:ObjectPageSubSection title="Gantt with navigation" id="idHeader2" titleUppercase="false">
+									<uxap:blocks>
+										<l:FixFlex minFlexSize="400">
+											<l:fixContent></l:fixContent>
+											<l:flexContent>
+												<g:GanttChartContainer>
+													<g:toolbar>
+														<g:ContainerToolbar/>
+													</g:toolbar>
+													<g:GanttChartWithTable id="gantt2" shapeSelectionMode="Single">
+														<g:axisTimeStrategy>
+															<axistime:ProportionZoomStrategy>
+																<axistime:totalHorizon>
+																	<config:TimeHorizon startTime="20181029000000" endTime="20181129000000"/>
+																</axistime:totalHorizon>
+																<axistime:visibleHorizon>
+																	<config:TimeHorizon startTime="20181029000000" endTime="20181129000000"/>
+																</axistime:visibleHorizon>
+															</axistime:ProportionZoomStrategy>
+														</g:axisTimeStrategy>
+														<g:table>
+															<table:TreeTable selectionMode="Single" visibleRowCountMode="Auto" minAutoRowCount="12" selectionBehavior="RowSelector"
+																enableColumnReordering="true" rows="{ path: '/root', parameters: { arrayNames: ['children'], numberOfExpandedLevels: 1 } }"
+																cellClick="onPressTreeTable2">
+																<table:columns>
+																	<table:Column label="Col 1" template="text"/>
+																</table:columns>
+																<table:rowSettingsTemplate>
+																	<g:GanttRowSettings rowId="{id}" shapes1="{path: 'task', templateShareable:false}" shapes2="{path: 'subtask', templateShareable:false}">
+																		<g:shapes1>
+																			<shapes:Task time="{path: 'startTime', formatter: '.fnTimeConverter'}" endTime="{path: 'endTime', formatter: '.fnTimeConverter'}"
+																				type="SummaryExpanded" color="sapUiAccent5"/>
+																		</g:shapes1>
+																		<g:shapes2>
+																			<shapes:Task time="{path: 'startTime', formatter: '.fnTimeConverter'}" endTime="{path: 'endTime', formatter: '.fnTimeConverter'}"/>
+																		</g:shapes2>
+																	</g:GanttRowSettings>
+																</table:rowSettingsTemplate>
+															</table:TreeTable>
+														</g:table>
+													</g:GanttChartWithTable>
+												</g:GanttChartContainer>
+											</l:flexContent>
+										</l:FixFlex>
+										<!--<vblocks:gantt id="ganttBlock"/>-->
+									</uxap:blocks>
+									<uxap:moreBlocks/>
+									<uxap:actions/>
+								</uxap:ObjectPageSubSection>
+							</uxap:subSections>
+						</uxap:ObjectPageSection>
+						<uxap:ObjectPageSection showTitle="true" title="Page Section Title" titleUppercase="false" visible="true" id="idGeneralinformation">
+							<uxap:subSections>
+								<uxap:ObjectPageSubSection title="{i18n>General Information}" titleUppercase="false" mode="Expanded">
+									<uxap:blocks>
+										<forms:SimpleForm editable="true" id="ideGISection1">
+											<forms:content>
+												<Label text="{i18n>Solutioning_process}"/>
+												<VBox>
+													<Select id="idSolutioningProcess" items="{/SolProcess}" width="100%" selectedKey="{SOLPRCID}" visible="{= !${appView>/hasInputVisible}}">
+														<core:Item key="{MCSOLPRCID}" text="{TXT}"></core:Item>
+													</Select>
+													<Text text="{SOLPRCID}" id="idSolutioningProcessInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>Solutioning_Lead_Source}"/>
+												<VBox>
+													<Select id="idSolutioningLeadsource" items="{/SolLeadSource}" width="100%" selectedKey="{SOLLEADSRC_MCSOLLEADSRCID}"
+														visible="{= !${appView>/hasInputVisible}}">
+														<core:Item key="{MCSOLLEADSRCID}" text="{TXT}"></core:Item>
+													</Select>
+													<Text text="{SOLLEADSRC_MCSOLLEADSRCID}" id="idSolutioningLeadsourceInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>Solution_Center_Role}"/>
+												<VBox>
+													<Select id="idsolutionCenterRole" items="{/SolCenterRole}" width="100%" selectedKey="{SOLCTRROLID}"
+														visible="{= !${appView>/hasInputVisible}}">
+														<core:Item key="{MCSOLCTRROLID}" text="{TXT}"></core:Item>
+													</Select>
+													<Text text="{SOLCTRROLID}" id="idsolutionCenterRoleInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>Investment Days(Comments)}"/>
+												<VBox>
+													<Input value="{INVDAYS}" id="idInvestmentDays" visible="{= !${appView>/hasInputVisible}}"/>
+													<Text text="{INVDAYS}" id="idInvestmentDaysInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>Comments}"/>
+												<VBox>
+													<Input value="{INDDAYSCMNT}" id="idComments" liveChange="handleUserInput" visible="{= !${appView>/hasInputVisible}}"/>
+													<Text text="{INDDAYSCMNT}" id="idCommentsInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+											</forms:content>
+										</forms:SimpleForm>
+										<forms:SimpleForm editable="true" id="idGISection2">
+											<forms:content>
+												<!--<VBox>-->
+												<Label text="{i18n>Solutioning Service}"/>
+												<VBox>
+													<Select id="idSolutioningService" items="{/SolSrvType}" width="100%" selectedKey="{SOLSERVTYPID}" visible="{= !${appView>/hasInputVisible}}">
+														<core:Item key="{MCSOLSERVTYPID}" text="{TXT}"></core:Item>
+													</Select>
+													<Text text="{SOLSERVTYPID}" id="idSolutioningServiceInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>Solutioning Start Date}"/>
+												<VBox>
+													<DatePicker id="idSolutioningStartdDate" value="{SOLSTDAT}" valueFormat="yyyy-MM-dd" visible="{= !${appView>/hasInputVisible}}"/>
+													<Text text="{SOLSTDAT}" id="idSolutioningStartdDateInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>Solutioning End Date}"/>
+												<VBox>
+													<DatePicker id="idSolutioningEdDate" value="{SOLEDDAT}" valueFormat="yyyy-MM-dd" visible="{= !${appView>/hasInputVisible}}"/>
+													<Text text="{SOLEDDAT}" id="idSolutioningEdDateInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>Solutioning Deadline}"/>
+												<VBox>
+													<DatePicker id="idSolutioningDeadline" value="{REQDLINE}" valueFormat="yyyy-MM-dd" visible="{= !${appView>/hasInputVisible}}"/>
+													<Text text="{REQDLINE}" id="idSolutioningDeadlineInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+											</forms:content>
+										</forms:SimpleForm>
+										<forms:SimpleForm editable="true" id="idGISection3">
+											<forms:content>
+												<!--<Label text="{i18n>Master Code}"/>-->
+												<!--<VBox>-->
+												<!--	<Input value="" id="idMasterCode" visible="{= !${appView>/hasInputVisible}}"/>-->
+												<!--	<Text text="" id="idMasterCodeInput" visible="{= !${appView>/hasTextVisible}}"/>-->
+												<!--</VBox>-->
+												<Label text="{i18n>Industry}"/>
+												<VBox>
+													<Select id="idIndustry" items="{/Industry}" width="100%" selectedKey="{INDUSTRYID_MCINDUSTRYID}" visible="{= !${appView>/hasInputVisible}}">
+														<core:Item key="{MCINDUSTRYID}" text="{TXT}"></core:Item>
+													</Select>
+													<Text text="{INDUSTRYID/TXT}" id="idIndustryInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>RFX}"/>
+												<VBox>
+													<Select id="idRFX" items="{/RFX}" width="100%" selectedKey="{RFX}" visible="{= !${appView>/hasInputVisible}}">
+														<core:Item key="{RFXID}" text="{TXT}"></core:Item>
+													</Select>
+													<Text text="{RFX}" id="idRFXInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+												<Label text="{i18n>SDC Involvement}"/>
+												<VBox>
+													<Select id="idsdcInvolvement" width="100%" selectedKey="{SDCINVOLV}" visible="{= !${appView>/hasInputVisible}}">
+														<items>
+															<core:Item text="Yes" key="Yes"/>
+															<core:Item text="No" key="No"/>
+														</items>
+													</Select>
+													<Text text="{SDCINVOLV}" id="idsdcInvolvementInput" visible="{= !${appView>/hasTextVisible}}"/>
+												</VBox>
+											</forms:content>
+										</forms:SimpleForm>
+									</uxap:blocks>
+									<uxap:moreBlocks/>
+									<uxap:actions/>
+								</uxap:ObjectPageSubSection>
+							</uxap:subSections>
+							<uxap:customAnchorBarButton/>
+						</uxap:ObjectPageSection>
+						<uxap:ObjectPageSection showTitle="true" title="Page Section Title" titleUppercase="false" visible="true">
+							<uxap:subSections>
+								<uxap:ObjectPageSubSection title="Comments" mode="Expanded">
+									<uxap:blocks>
+										<l:VerticalLayout width="100%" class="sapUiContentPadding" id="idVerticalLayout">
+											<rte:RichTextEditor width="100%" height="300px" customToolbar="true" showGroupFont="true" showGroupLink="true" showGroupInsert="true"
+												ready="onRTEready" value="{REMARKS}" editable="{= !${appView>/hasInputVisible}}"/>
+										</l:VerticalLayout>
+									</uxap:blocks>
+									<uxap:moreBlocks/>
+									<uxap:actions/>
+								</uxap:ObjectPageSubSection>
+							</uxap:subSections>
+							<uxap:customAnchorBarButton/>
+						</uxap:ObjectPageSection>
+					</uxap:sections>
+					<uxap:footer visible="true">
+						<OverflowToolbar id='idOverflowmanageSR' visible="true">
+							<content>
+								<ToolbarSpacer/>
+								<Button text="Update" type="Emphasized" visible="true" enabled="false" press="onUpdateSR" id="idUpdateButton"/>
+								<Button text="Cancel" type="Default" visible="true" enabled="false" press="onCancelSR" id="idCancelButton"/>
+							</content>
+						</OverflowToolbar>
+					</uxap:footer>
+				</uxap:ObjectPageLayout>
+			</Page>
+	<!--	</pages>-->
+	<!--</App>-->
+</mvc:View>
